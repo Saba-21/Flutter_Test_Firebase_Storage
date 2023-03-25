@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "689102902761",
+    "project_id": "medical-data-storage-316cf",
+    "storage_bucket": "medical-data-storage-316cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689102902761:android:9804f905b732261439e778",
+        "android_client_info": {
+          "package_name": "com.sample.document_storage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689102902761-vnvh6a5qjoc6fhit706emuer0mvod64o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs_sE4_QrE6_tUl0L8qCPuK8M5wmdhYkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689102902761-vnvh6a5qjoc6fhit706emuer0mvod64o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "689102902761-kf35g7v7j2n2rliqk3agcr5nk8qhto8g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sample.documentStorage"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
