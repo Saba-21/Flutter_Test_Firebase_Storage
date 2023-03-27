@@ -1,10 +1,7 @@
-import 'package:document_storage/data/firestore_service.dart';
 import 'package:document_storage/ui/home/profile_screen.dart';
 import 'package:document_storage/utility/styles.dart';
 import 'package:document_storage/ui/home/add_dialog.dart';
 import 'package:flutter/material.dart';
-import '../../data/db_helper.dart';
-import '../../data/storage_service.dart';
 import 'components/documents/documents_section.dart';
 import 'components/tests/bottom_sheet/test_bottom_sheet.dart';
 import 'components/tests/bottom_sheet/test_text_controller.dart';
@@ -16,17 +13,7 @@ class HomeScreenGroup extends StatefulWidget {
 
   final String title = 'Your Medical Data';
 
-  void syncDocs() async {
-    final docs = await StorageService().getAllFiles();
-    final box = await DBHelper().getDatabaseBox();
-    DBHelper().updateDocuments(docs, box);
-  }
 
-  void syncTests() async {
-    final tests = await FirestoreService().getTests();
-    final box = await DBHelper().getDatabaseBox();
-    DBHelper().updateTests(tests, box);
-  }
 
   @override
   State<HomeScreenGroup> createState() => _HomeScreenGroupState();
@@ -73,8 +60,6 @@ class _HomeScreenGroupState extends State<HomeScreenGroup> {
 
   @override
   Widget build(BuildContext context) {
-    widget.syncDocs();
-    widget.syncTests();
 
     return Scaffold(
       floatingActionButton: getHomeFAB(),
