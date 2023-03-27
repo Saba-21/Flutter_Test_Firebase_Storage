@@ -1,3 +1,4 @@
+import 'package:document_storage/data/firestore_service.dart';
 import 'package:document_storage/ui/home/components/tests/bottom_sheet/test_text_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class TestBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Text(
-              'Your Name',
+              'Test Name',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextFormField(
@@ -35,12 +36,12 @@ class TestBottomSheet extends StatelessWidget {
               controller: testTextController.myNameFieldController,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: 'Enter Your Name',
+                labelText: 'Enter Test Name',
               ),
             ),
             const SizedBox(height: 20),
             const Text(
-              'Your Age',
+              'Your Height',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextFormField(
@@ -49,7 +50,7 @@ class TestBottomSheet extends StatelessWidget {
               controller: testTextController.myAgeFieldController,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
-                labelText: 'Enter Your Age',
+                labelText: 'Enter Your Height',
               ),
             ),
             const SizedBox(height: 20),
@@ -69,9 +70,13 @@ class TestBottomSheet extends StatelessWidget {
             const SizedBox(height: 30),
             if (testModel == null)
               OutlinedButton(
-                onPressed: () {
-                  DBHelper().insertTest(testTextController.getTestModel());
-                  Navigator.pop(context);
+                onPressed: () async {
+                  final data = testTextController.getTestModel();
+                  final result = await FirestoreService().uploadTest(data);
+                  if (result != null) {
+                    DBHelper().insertTest(result);
+                    Navigator.pop(context);
+                  }
                 },
                 child: const Text('Save'),
               )

@@ -20,19 +20,22 @@ class TestModelAdapter extends TypeAdapter<TestModel> {
       fields[0] as String,
       fields[1] as int,
       fields[2] as double,
+      fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, TestModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.age)
       ..writeByte(2)
-      ..write(obj.weight);
+      ..write(obj.weight)
+      ..writeByte(3)
+      ..write(obj.id);
   }
 
   @override

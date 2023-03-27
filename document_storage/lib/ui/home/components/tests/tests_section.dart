@@ -1,3 +1,4 @@
+import 'package:document_storage/data/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -52,9 +53,13 @@ class TestsSection extends StatelessWidget {
                       onItemClick: () {
                         onOpenTestClicked(tests[index]);
                       },
-                      onCancelClick: () {
-                        tests.removeAt(index);
-                        DBHelper().updateTests(tests, box);
+                      onCancelClick: () async {
+                        final result = await FirestoreService()
+                            .deleteTest(tests[index].id);
+                        if (result) {
+                          tests.removeAt(index);
+                          DBHelper().updateTests(tests, box);
+                        }
                       },
                     );
                   },

@@ -1,3 +1,4 @@
+import 'package:document_storage/data/firestore_service.dart';
 import 'package:document_storage/ui/home/profile_screen.dart';
 import 'package:document_storage/utility/styles.dart';
 import 'package:document_storage/ui/home/add_dialog.dart';
@@ -19,6 +20,12 @@ class HomeScreenGroup extends StatefulWidget {
     final docs = await StorageService().getAllFiles();
     final box = await DBHelper().getDatabaseBox();
     DBHelper().updateDocuments(docs, box);
+  }
+
+  void syncTests() async {
+    final tests = await FirestoreService().getTests();
+    final box = await DBHelper().getDatabaseBox();
+    DBHelper().updateTests(tests, box);
   }
 
   @override
@@ -67,6 +74,7 @@ class _HomeScreenGroupState extends State<HomeScreenGroup> {
   @override
   Widget build(BuildContext context) {
     widget.syncDocs();
+    widget.syncTests();
 
     return Scaffold(
       floatingActionButton: getHomeFAB(),

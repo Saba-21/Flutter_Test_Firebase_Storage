@@ -30,6 +30,7 @@ class TestTextController {
       myNameFieldController.text,
       int.parse(myAgeFieldController.text),
       double.parse(myWeightFieldController.text),
+      ''
     );
   }
 }
