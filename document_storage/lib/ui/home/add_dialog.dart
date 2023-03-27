@@ -1,3 +1,4 @@
+import 'package:document_storage/data/storage_service.dart';
 import 'package:document_storage/utility/utilities.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,11 @@ class AddDialog extends StatelessWidget {
               Navigator.pop(context);
               var result = await uploadFile();
               if (result != null) {
-                insertDocument(result.files.single.path!);
+                var uploadResult = await StorageService()
+                    .uploadFile(result.files.single.path!);
+                if (uploadResult != null) {
+                  DBHelper().insertDocument(uploadResult);
+                }
               }
             },
             child: const Text(

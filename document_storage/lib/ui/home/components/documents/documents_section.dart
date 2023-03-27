@@ -1,3 +1,4 @@
+import 'package:document_storage/data/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -12,9 +13,9 @@ class DocumentsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: getDocumentsListenable(),
+      valueListenable: DBHelper().getDocumentsListenable(),
       builder: (context, Box<dynamic> box, widget) {
-        var docs = getDocuments(box);
+        var docs = DBHelper().getDocuments(box);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -49,9 +50,13 @@ class DocumentsSection extends StatelessWidget {
                       onItemClick: () {
                         openFile(docs[index]);
                       },
-                      onCancelClick: () {
-                        docs.removeAt(index);
-                        updateDocuments(docs, box);
+                      onCancelClick: () async {
+                        final result =
+                            await StorageService().deleteFile(docs[index]);
+                        if (result) {
+                          docs.removeAt(index);
+                          DBHelper().updateDocuments(docs, box);
+                        }
                       },
                     );
                   },

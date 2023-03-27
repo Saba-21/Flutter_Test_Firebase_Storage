@@ -70,7 +70,7 @@ class TestBottomSheet extends StatelessWidget {
             if (testModel == null)
               OutlinedButton(
                 onPressed: () {
-                  insertTest(testTextController.getTestModel());
+                  DBHelper().insertTest(testTextController.getTestModel());
                   Navigator.pop(context);
                 },
                 child: const Text('Save'),

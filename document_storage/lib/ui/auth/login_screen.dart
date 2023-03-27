@@ -1,3 +1,4 @@
+import 'package:document_storage/data/db_helper.dart';
 import 'package:flutter/material.dart';
 
 import 'create_account.dart';
@@ -5,6 +6,10 @@ import '../../data/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  void clearLocalCache() async {
+    DBHelper().clearLocalDatabase();
+  }
 
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -16,6 +21,8 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    widget.clearLocalCache();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),

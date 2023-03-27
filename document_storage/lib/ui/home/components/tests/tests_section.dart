@@ -15,9 +15,9 @@ class TestsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: getTestsListenable(),
+      valueListenable: DBHelper().getTestsListenable(),
       builder: (context, Box<dynamic> box, widget) {
-        var tests = getTests(box);
+        var tests = DBHelper().getTests(box);
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -54,7 +54,7 @@ class TestsSection extends StatelessWidget {
                       },
                       onCancelClick: () {
                         tests.removeAt(index);
-                        updateTests(tests, box);
+                        DBHelper().updateTests(tests, box);
                       },
                     );
                   },

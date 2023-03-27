@@ -1,4 +1,3 @@
-import 'package:document_storage/utility/utilities.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utility/styles.dart';
@@ -37,10 +36,7 @@ class DocumentItem extends StatelessWidget {
                         Icons.file_present_rounded,
                         size: 36,
                       ),
-                      Text(
-                        getFileName(item),
-                        maxLines: 2,
-                      ),
+                      Text(item, maxLines: 2),
                     ],
                   ),
                 ),
